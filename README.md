@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup
+
+1. Clone repository.
+2. `cd contactmanager_redux`
+3. Install dependencies
+`npm install`
+4. `cp .env.example .env`
+
 ## Available Scripts
 
 In the project directory, you can run:
