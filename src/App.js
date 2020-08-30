@@ -16,7 +16,6 @@ import config from "./config";
 
 class App extends Component {
   render() {
-    console.log(config.basename);
     return (
       <Provider store={store}>
         <Router basename={config.basename}>
@@ -24,26 +23,10 @@ class App extends Component {
             <Header branding="Contact Manager" />
             <div className="container">
               <Switch>
-                <Route
-                  exact
-                  path={`${process.env.PUBLIC_URL}/`}
-                  component={Contacts}
-                />
-                <Route
-                  exact
-                  path={`${process.env.PUBLIC_URL}/contact/add`}
-                  component={AddContact}
-                />
-                <Route
-                  exact
-                  path={`${process.env.PUBLIC_URL}/contact/edit/:id`}
-                  component={EditContact}
-                />
-                <Route
-                  exact
-                  path={`${process.env.PUBLIC_URL}/about`}
-                  component={About}
-                />
+                <Route exact path="/" component={Contacts} />
+                <Route exact path="/contact/add" component={AddContact} />
+                <Route exact path="/contact/edit/:id" component={EditContact} />
+                <Route exact path="/about" component={About} />
                 <Route component={NotFound} />
               </Switch>
             </div>
