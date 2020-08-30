@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router basename={process.env.REACT_APP_API_URL}>
+        <Router>
           <div className="App">
             <Header branding="Contact Manager" />
             <div className="container">
