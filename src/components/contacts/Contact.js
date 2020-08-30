@@ -6,10 +6,10 @@ import { delContact } from "../../actions/contactAction";
 
 class Contact extends Component {
   state = {
-    showContactInfo: false
+    showContactInfo: false,
   };
 
-  onDeleteClick = id => {
+  onDeleteClick = (id) => {
     //// DELETE CONTACT ////
     this.props.delContact(id);
   };
@@ -25,7 +25,7 @@ class Contact extends Component {
           <i
             onClick={() =>
               this.setState({
-                showContactInfo: !this.state.showContactInfo
+                showContactInfo: !this.state.showContactInfo,
               })
             }
             className="fas fa-sort-down"
@@ -36,14 +36,14 @@ class Contact extends Component {
             style={{ cursor: "pointer", float: "right", color: "red" }}
             onClick={this.onDeleteClick.bind(this, id)}
           />
-          <Link to={`contact/edit/${id}`}>
+          <Link to={`${process.env.PUBLIC_URL}/contact/edit/${id}`}>
             <i
               className="fas fa-pencil-alt"
               style={{
                 cursor: "pointer",
                 float: "right",
                 color: "black",
-                marginRight: "1rem"
+                marginRight: "1rem",
               }}
             />
           </Link>
@@ -61,10 +61,7 @@ class Contact extends Component {
 
 Contact.propTypes = {
   contact: PropTypes.object.isRequired,
-  delContact: PropTypes.func.isRequired
+  delContact: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { delContact }
-)(Contact);
+export default connect(null, { delContact })(Contact);
