@@ -2,7 +2,6 @@
   "name": "contactmanager_redux",
   "version": "0.1.0",
   "private": true,
-  "homepage":"/contactmanager_redux",
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.1.3",
