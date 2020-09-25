@@ -12,8 +12,6 @@ import Contacts from "./components/contacts/Contacts";
 import AddContact from "./components/contacts/AddContact";
 import EditContact from "./components/contacts/EditContact";
 
-import config from "./config";
-
 class App extends Component {
   render() {
     return (
