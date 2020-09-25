@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - master
+      - dev
 
   pull_request:
     brances:
       - master
+      - dev
 
 jobs:
   Deploy:
@@ -27,12 +29,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-      
+
       - name: Build page
         env:
           REACT_APP_BASE_NAME: ${{ secrets.REACT_APP_BASE_NAME }}
         run: npm run build
-        
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

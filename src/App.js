@@ -12,13 +12,11 @@ import Contacts from "./components/contacts/Contacts";
 import AddContact from "./components/contacts/AddContact";
 import EditContact from "./components/contacts/EditContact";
 
-import config from "./config";
-
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router basename={config.basename}>
+        <Router>
           <div className="App">
             <Header branding="Contact Manager" />
             <div className="container">
