@@ -9,14 +9,14 @@ class AddContact extends Component {
   state = {
     name: "",
     email: "",
-    phone: "",
+    phone_number: "",
     errors: {},
   };
 
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email, phone } = this.state;
+    const { name, email, phone_number } = this.state;
 
     // Check For Errors
     if (name === "") {
@@ -29,15 +29,15 @@ class AddContact extends Component {
       return;
     }
 
-    if (phone === "") {
+    if (phone_number === "") {
       this.setState({ errors: { phone: "Phone is required" } });
       return;
     }
 
     const newContact = {
-      name,
-      email,
-      phone,
+      name: name,
+      email: email,
+      phone_number: phone_number,
     };
 
     //// SUBMIT CONTACT ////
@@ -47,7 +47,7 @@ class AddContact extends Component {
     this.setState({
       name: "",
       email: "",
-      phone: "",
+      phone_number: "",
       errors: {},
     });
 
@@ -57,7 +57,7 @@ class AddContact extends Component {
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    const { name, email, phone, errors } = this.state;
+    const { name, email, phone_number, errors } = this.state;
 
     return (
       <div className="card mb-3">
@@ -83,9 +83,9 @@ class AddContact extends Component {
             />
             <TextInputGroup
               label="Phone"
-              name="phone"
+              name="phone_number"
               placeholder="Enter Phone"
-              value={phone}
+              value={phone_number}
               onChange={this.onChange}
               error={errors.phone}
             />

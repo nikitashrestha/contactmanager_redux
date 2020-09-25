@@ -8,16 +8,16 @@ class EditContact extends Component {
   state = {
     name: "",
     email: "",
-    phone: "",
-    errors: {}
+    phone_number: "",
+    errors: {},
   };
 
   componentWillReceiveProps(nextProps, nextState) {
-    const { name, email, phone } = nextProps.contact;
+    const { name, email, phone_number } = nextProps.contact;
     this.setState({
       name,
       email,
-      phone
+      phone_number,
     });
   }
 
@@ -26,10 +26,10 @@ class EditContact extends Component {
     this.props.getCont(id);
   }
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email, phone } = this.state;
+    const { name, email, phone_number } = this.state;
 
     // Check For Errors
     if (name === "") {
@@ -42,36 +42,35 @@ class EditContact extends Component {
       return;
     }
 
-    if (phone === "") {
+    if (phone_number === "") {
       this.setState({ errors: { phone: "Phone is required" } });
       return;
     }
     const { id } = this.props.match.params;
 
     const updateContact = {
-      id,
-      name,
-      email,
-      phone
+      name: name,
+      email: email,
+      phone_number: phone_number,
     };
 
     //// UPDATE CONTACT ////
-    this.props.updContact(updateContact);
+    this.props.updContact(id, updateContact);
     // Clear State
     this.setState({
       name: "",
       email: "",
-      phone: "",
-      errors: {}
+      phone_number: "",
+      errors: {},
     });
 
     this.props.history.push("/");
   };
 
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    const { name, email, phone, errors } = this.state;
+    const { name, email, phone_number, errors } = this.state;
 
     return (
       <div className="card mb-3">
@@ -97,9 +96,9 @@ class EditContact extends Component {
             />
             <TextInputGroup
               label="Phone"
-              name="phone"
+              name="phone_number"
               placeholder="Enter Phone"
-              value={phone}
+              value={phone_number}
               onChange={this.onChange}
               error={errors.phone}
             />
@@ -115,16 +114,13 @@ class EditContact extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  contact: state.contact.contact
+const mapStateToProps = (state) => ({
+  contact: state.contact.contact,
 });
 
-export default connect(
-  mapStateToProps,
-  { getCont, updContact }
-)(EditContact);
+export default connect(mapStateToProps, { getCont, updContact })(EditContact);
 
 EditContact.PropTypes = {
   contact: PropTypes.object.isRequired,
-  getCont: PropTypes.func.isRequired
+  getCont: PropTypes.func.isRequired,
 };
