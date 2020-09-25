@@ -9,30 +9,27 @@ import axios from "axios";
 
 export const getContact = () => async (dispatch) => {
   const res = await axios.get(
-    "http://ec2-54-226-8-211.compute-1.amazonaws.com:5000/contacts",
-    {
-      headers: {
-        "x-token": "fake-super-secret-token",
-      },
-    }
+    "https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts"
   );
 
   dispatch({
     type: GET_CONTACTS,
-    payload: res.data,
+    payload: res.data.data,
   });
 };
 
 export const addContact = (contact) => async (dispatch) => {
   const res = await axios.post(
-    "http://ec2-54-226-8-211.compute-1.amazonaws.com:5000/contacts/add",
+    "https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts",
     contact,
     {
       headers: {
-        "x-token": "fake-super-secret-token",
+        "X-Api-Key": "2PLWDCcD8L2Xj869AwzS44yHGlE7xyhi3aFO2ZG2",
       },
     }
   );
+
+  console.log(res);
   dispatch({
     type: ADD_CONTACTS,
     payload: res.data,
@@ -42,12 +39,7 @@ export const addContact = (contact) => async (dispatch) => {
 export const delContact = (id) => async (dispatch) => {
   try {
     await axios.delete(
-      `http://ec2-54-226-8-211.compute-1.amazonaws.com:5000/contacts/delete/${id}`,
-      {
-        headers: {
-          "x-token": "fake-super-secret-token",
-        },
-      }
+      `https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts/${id}`
     );
     dispatch({
       type: DEL_CONTACTS,
@@ -63,12 +55,7 @@ export const delContact = (id) => async (dispatch) => {
 
 export const getCont = (id) => async (dispatch) => {
   const res = await axios.get(
-    `http://ec2-54-226-8-211.compute-1.amazonaws.com:5000/contacts/${id}`,
-    {
-      headers: {
-        "x-token": "fake-super-secret-token",
-      },
-    }
+    `https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts/${id}`
   );
 
   dispatch({
@@ -79,15 +66,15 @@ export const getCont = (id) => async (dispatch) => {
 
 export const updContact = (id, contact) => async (dispatch) => {
   const res = await axios.put(
-    `http://ec2-54-226-8-211.compute-1.amazonaws.com:5000/contacts/edit/${id}`,
+    `https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts/${id}`,
     contact,
     {
       headers: {
-        "x-token": "fake-super-secret-token",
+        "X-Api-Key": "2PLWDCcD8L2Xj869AwzS44yHGlE7xyhi3aFO2ZG2",
       },
     }
   );
-
+  console.log(res);
   dispatch({
     type: UPD_CONTACT,
     payload: res.data,
