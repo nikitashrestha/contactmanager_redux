@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router basename={config.basename}>
+        <Router>
           <div className="App">
             <Header branding="Contact Manager" />
             <div className="container">
