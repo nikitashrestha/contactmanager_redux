@@ -21,7 +21,7 @@ export const getContact = () => async (dispatch) => {
 };
 
 export const addContact = (contact) => async (dispatch) => {
-  const res = await axios.post(
+  await axios.post(
     "https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts",
     contact,
     {
@@ -47,6 +47,7 @@ export const delContact = (id) => async (dispatch) => {
         },
       }
     );
+    
     dispatch({
       type: DEL_CONTACTS,
       payload: id,
@@ -71,7 +72,7 @@ export const getCont = (id) => async (dispatch) => {
 };
 
 export const updContact = (contact) => async (dispatch) => {
-  const res = await axios.put(
+  await axios.put(
     `https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts/${contact.id}`,
     contact,
     {
@@ -80,7 +81,7 @@ export const updContact = (contact) => async (dispatch) => {
       },
     }
   );
-  console.log(res);
+
   dispatch({
     type: UPD_CONTACT,
     payload: contact,
