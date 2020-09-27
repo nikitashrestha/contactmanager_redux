@@ -7,6 +7,8 @@ import {
 } from "./types";
 import axios from "axios";
 
+import config from "./../config";
+
 export const getContact = () => async (dispatch) => {
   const res = await axios.get(
     "https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts"
@@ -24,22 +26,26 @@ export const addContact = (contact) => async (dispatch) => {
     contact,
     {
       headers: {
-        "X-Api-Key": "2PLWDCcD8L2Xj869AwzS44yHGlE7xyhi3aFO2ZG2",
+        "X-Api-Key": config.apiKey,
       },
     }
   );
 
-  console.log(res);
   dispatch({
     type: ADD_CONTACTS,
-    payload: res.data,
+    payload: contact,
   });
 };
 
 export const delContact = (id) => async (dispatch) => {
   try {
     await axios.delete(
-      `https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts/${id}`
+      `https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts/${id}`,
+      {
+        headers: {
+          "X-Api-Key": config.apiKey,
+        },
+      }
     );
     dispatch({
       type: DEL_CONTACTS,
@@ -64,19 +70,19 @@ export const getCont = (id) => async (dispatch) => {
   });
 };
 
-export const updContact = (id, contact) => async (dispatch) => {
+export const updContact = (contact) => async (dispatch) => {
   const res = await axios.put(
-    `https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts/${id}`,
+    `https://4o94882eoe.execute-api.us-east-1.amazonaws.com/uat/contacts/${contact.id}`,
     contact,
     {
       headers: {
-        "X-Api-Key": "2PLWDCcD8L2Xj869AwzS44yHGlE7xyhi3aFO2ZG2",
+        "X-Api-Key": config.apiKey,
       },
     }
   );
   console.log(res);
   dispatch({
     type: UPD_CONTACT,
-    payload: res.data,
+    payload: contact,
   });
 };

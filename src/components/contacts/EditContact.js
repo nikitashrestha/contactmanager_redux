@@ -49,13 +49,14 @@ class EditContact extends Component {
     const { id } = this.props.match.params;
 
     const updateContact = {
+      id:id,
       name: name,
       email: email,
       phone_number: phone_number,
     };
 
     //// UPDATE CONTACT ////
-    this.props.updContact(id, updateContact);
+    this.props.updContact(updateContact);
     // Clear State
     this.setState({
       name: "",
